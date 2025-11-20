@@ -400,20 +400,20 @@
                 <button class="tab-btn" onclick="setTab('rx')">Treatment</button>
             </div>
             <div id="tab-overview" class="tab-content active">
-                <h3>📊 ECG Criteria</h3>
+                <h3>📊 E.K.G. Criteria（心電圖特徵）</h3>
                 <ul id="list-criteria"></ul>
                 <div id="alert-box" style="padding:10px; background:rgba(239,68,68,0.1); border:1px solid #ef4444; color:#fca5a5; border-radius:4px; display:none;"></div>
             </div>
             <div id="tab-patho" class="tab-content">
-                <h3>🧬 Pathophysiology</h3>
+                <h3>🧬 病理機轉</h3>
                 <p id="txt-patho"></p>
-                <h3>🔍 Etiology</h3>
+                <h3>🔍 致病原因</h3>
                 <ul id="list-causes"></ul>
             </div>
             <div id="tab-rx" class="tab-content">
-                <h3>💊 ACLS Guidelines</h3>
+                <h3>💊 ACLS 治療指引</h3>
                 <ul id="list-rx"></ul>
-                <h3>🩺 Nursing Care</h3>
+                <h3>❤️ 護理措施</h3>
                 <ul id="list-nurse"></ul>
             </div>
         </div>
@@ -472,8 +472,8 @@
         'nsr': { t:"NSR 正常竇性心律", b:"Normal", c:"#4caf50", shock:false, hr:72, sys:120, dia:80, spo2:98, rr:16, temp:37.0, cri:["Rate 60-100 bpm", "Rhythm 規則", "P波清楚，PR 0.12-0.20s"], patho:"電訊號由竇房結 (SA Node) 啟動，經房室結 (AV Node) 傳至心室，路徑完整。", cause:["健康心臟", "休息狀態"], rx:["無需治療"], n:["持續監測"], vis:'nsr' },
         'sb': { t:"Sinus Bradycardia", b:"Brady", c:"#4caf50", shock:false, hr:45, sys:95, dia:60, spo2:96, rr:14, temp:36.8, cri:["Rate < 60 bpm", "P-QRS-T 波形正常"], patho:"竇房結發火頻率降低，但傳導路徑正常。", cause:["睡眠/運動員", "迷走神經亢進", "藥物 (Beta-blocker)"], rx:["觀察", "有症狀給 Atropine"], n:["監測血壓與意識"], vis:'nsr' },
         'psvt': { t:"PSVT 室上頻脈", b:"Tachy", c:"#ff9800", shock:false, hr:188, sys:90, dia:60, spo2:94, rr:24, temp:37.2, cri:["Rate 150-250 bpm", "QRS 窄波", "P波隱藏"], patho:"房室結折返 (AVNRT)。存在雙徑路形成短路。", cause:["壓力/焦慮/咖啡因", "WPW 症候群"], rx:["Vagal Maneuver", "Adenosine 6mg IVP"], n:["接三通管+抬手", "備妥急救車"], vis:'psvt' },
-        'afib': { t:"Afib 心房顫動", b:"Irregular", c:"#ff9800", shock:false, hr:130, sys:110, dia:70, spo2:95, rr:20, temp:36.9, cri:["絕對不規則", "無 P 波 (f waves)"], patho:"心房多處微折返亂放電，失去收縮功能。", cause:["高血壓", "心衰竭", "老化"], rx:["Rate Control", "Anticoagulation"], n:["監測脈搏", "評估中風"], vis:'afib' },
-        'afl': { t:"Atrial Flutter", b:"Tachy", c:"#ff9800", shock:false, hr:150, sys:110, dia:70, spo2:95, rr:18, temp:37.0, cri:["鋸齒狀撲動波", "F waves", "規則 (2:1)"], patho:"心房單一巨大折返迴路。", cause:["COPD", "心臟病"], rx:["Rate Control", "Ablation"], n:["監測"], vis:'psvt' },
+        'afib': { t:"Afib 心房顫動", b:"Irregular", c:"#ff9800", shock:false, hr:130, sys:110, dia:70, spo2:95, rr:20, temp:36.9, cri:["絕對不規則", "無 P 波 (f waves)"], patho:"心房多處微折返亂放電，失去收縮功能。", cause:["高血壓", "心衰竭", "老化"], rx:["心率控制", "Anticoagulation"], n:["監測脈搏", "評估中風"], vis:'afib' },
+        'afl': { t:"Atrial Flutter", b:"Tachy", c:"#ff9800", shock:false, hr:150, sys:110, dia:70, spo2:95, rr:18, temp:37.0, cri:["鋸齒狀撲動波", "F waves", "規則 (2:1)"], patho:"心房單一巨大折返迴路。", cause:["COPD", "心臟病"], rx:["心率控制", "消融術"], n:["監測"], vis:'psvt' },
         'pvc': { t:"PVC 心室早收縮", b:"Ectopic", c:"#ff9800", shock:false, hr:"Irreg", sys:115, dia:75, spo2:97, rr:16, temp:37.0, cri:["寬大變形 QRS", "提早出現", "代償性暫停"], patho:"心室異位點提早放電。", cause:["低血鉀/鎂", "缺氧", "咖啡因"], rx:["觀察", "治療病因"], n:["監測頻率"], vis:'nsr' },
         'vt_pulse': { t:"VT (Pulse) 有脈搏", b:"Emergency", c:"#f44336", shock:false, hr:170, sys:90, dia:50, spo2:92, rr:26, temp:37.0, cri:["寬大 QRS", "規則快速", "單型性"], patho:"心室折返或異位點主導。充血不足。", cause:["心肌梗塞", "電解質異常"], rx:["Amiodarone", "同步整流"], n:["摸脈搏！", "12導程"], vis:'vt' },
         'vt_pulseless': { t:"VT (Pulseless)", b:"Arrest", c:"#f44336", shock:true, hr:180, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["寬大 QRS", "無脈搏"], patho:"同 VT 但心輸出量為零。", cause:["同 VT"], rx:["Defib 200J", "CPR"], n:["Code Blue"], vis:'vt' },
