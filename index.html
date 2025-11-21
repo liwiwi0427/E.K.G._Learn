@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+    <script>
+    // 🔒 警衛機制：檢查是否有登入紀錄
+    // 如果 localStorage 裡面沒有 'ecg_username'，就強制踢回 login.html
+    if (!localStorage.getItem('ecg_username')) {
+        window.location.replace('login.html'); 
+    }
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECG Pro V10.5.01</title>
