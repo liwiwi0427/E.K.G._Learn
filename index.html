@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <script>
-    // 🔒 警衛機制：檢查是否有登入紀錄
-    // 如果 localStorage 裡面沒有 'ecg_username'，就強制踢回 login.html
-    if (!localStorage.getItem('ecg_username')) {
-        window.location.replace('login.html'); 
-    }
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECG Pro V10.5.01</title>
+    
+    <!-- 🔒 警衛機制：檢查是否有登入紀錄 -->
+    <script>
+        if (!localStorage.getItem('ecg_username')) {
+            // 如果沒名字，踢回登入頁
+            window.location.replace('login.html'); 
+        }
+    </script>
+
     <style>
         :root {
             /* --- DEFAULT DARK THEME --- */
@@ -325,7 +327,11 @@
             🌗<span>主題變更</span>
         </div>
         <div class="footer-btn" onclick="openModal()" title="About / Changelog">
-            ℹ️<span>關於這個酷東西</span>
+            ℹ️<span>關於</span>
+        </div>
+        <!-- 新增登出按鈕 -->
+        <div class="footer-btn" onclick="logout()" title="Sign Out" style="color:#ef4444;">
+            🚪<span>登出</span>
         </div>
     </div>
 </aside>
@@ -337,11 +343,14 @@
         <div class="monitor-screen">
             <div class="ecg-grid"></div>
             <div class="flash-overlay" id="screen-flash"></div>
+            
+            <!-- Monitor Overlay with User Badge -->
             <div class="monitor-overlay">
                 <div>LEAD II <span style="font-size:0.8em; opacity:0.7; margin-left:10px;">Stat Monitoring</span></div>
-                <!-- 名字會從這裡讀取 -->
+                <!-- 關鍵 ID 所在 -->
                 <div id="user-staff-badge" style="font-size:0.85rem; color:var(--c-spo2); margin-top:4px; letter-spacing:1px; font-weight:normal; opacity:0.9;"></div>
             </div>
+
             <div class="med-log" id="med-log"></div>
             <canvas id="ecgCanvas"></canvas>
         </div>
@@ -514,6 +523,14 @@
     function openModal() { document.getElementById('info-modal').style.display = 'flex'; }
     function closeModal() { document.getElementById('info-modal').style.display = 'none'; }
 
+    // --- Logout Logic ---
+    function logout() {
+        if(confirm("確定要登出系統嗎？")) {
+            localStorage.removeItem('ecg_username');
+            window.location.replace('login.html');
+        }
+    }
+
     // --- Canvas & Waveforms ---
     const canvas = document.getElementById('ecgCanvas'); const ctx = canvas.getContext('2d');
     let x=0; const speed=1.5; let lastY=150;
@@ -631,15 +648,21 @@
     setInterval(()=>{if(DB[curKey].hr!=="---"){document.getElementById('val-hr').innerText=DB[curKey].hr+Math.floor(Math.random()*3)-1;}},2000);
 
     // --- Logic: Read User from LocalStorage ---
-    (function initUser() {
-        // 從 LocalStorage 讀取 'ecg_username'
+    // 確保頁面元素都載入後才執行
+    window.addEventListener('DOMContentLoaded', () => {
+        const badge = document.getElementById('user-staff-badge');
         const storedName = localStorage.getItem('ecg_username');
         
-        // 如果有存到名字，就顯示名字，否則顯示「訪客」
-        const displayName = storedName && storedName.trim() !== "" ? storedName : "訪客";
-        
-        document.getElementById('user-staff-badge').innerHTML = `醫護人員：<strong>${displayName}</strong>`;
-    })();
+        if (badge) {
+            if (storedName && storedName.trim() !== "") {
+                badge.innerHTML = `醫護人員：<strong>${storedName}</strong>`;
+            } else {
+                badge.innerHTML = `醫護人員：<strong>訪客</strong>`;
+            }
+        } else {
+            console.error("錯誤：找不到 id='user-staff-badge' 的顯示區域！請檢查 HTML。");
+        }
+    });
 </script>
 </body>
 </html>
