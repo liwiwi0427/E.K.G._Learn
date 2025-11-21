@@ -549,8 +549,8 @@
         document.getElementById('txt-patho').innerText=d.patho;
         
         const alert = document.getElementById('alert-box');
-        if(d.shock) { alert.style.display='block'; alert.innerHTML="⚡ <strong>SHOCKABLE:</strong> Indicated for Defibrillation."; }
-        else if(k==='pea'||k==='asystole') { alert.style.display='block'; alert.innerHTML="⛔ <strong>NOT SHOCKABLE:</strong> CPR Only."; }
+        if(d.shock) { alert.style.display='block'; alert.innerHTML="⚡ <strong>【注意】視情形電擊！</strong> 在醫師或專師監督下可執行電擊去顫！⚡"; }
+        else if(k==='pea'||k==='asystole') { alert.style.display='block'; alert.innerHTML="⛔ <strong>【重要】請不要電擊！</strong>給予CPR即可！⛔"; }
         else alert.style.display='none';
         
         updateAnatomy(d.vis);
