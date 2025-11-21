@@ -109,7 +109,6 @@
             background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px);
             background-size: 20px 20px;
         }
-        /* 修改處：Monitor Overlay */
         .monitor-overlay {
             position: absolute; top: 10px; left: 15px; color: var(--c-hr); font-weight: bold; z-index: 5;
             text-shadow: 0 0 5px rgba(0,230,118,0.3); font-family: monospace;
@@ -331,14 +330,11 @@
         <div class="monitor-screen">
             <div class="ecg-grid"></div>
             <div class="flash-overlay" id="screen-flash"></div>
-            
-            <!-- Modified Overlay with Staff Name -->
             <div class="monitor-overlay">
                 <div>LEAD II <span style="font-size:0.8em; opacity:0.7; margin-left:10px;">Stat Monitoring</span></div>
-                <!-- 這裡會顯示醫護人員名字 -->
+                <!-- 名字會從這裡讀取 -->
                 <div id="user-staff-badge" style="font-size:0.85rem; color:var(--c-spo2); margin-top:4px; letter-spacing:1px; font-weight:normal; opacity:0.9;"></div>
             </div>
-
             <div class="med-log" id="med-log"></div>
             <canvas id="ecgCanvas"></canvas>
         </div>
@@ -627,15 +623,16 @@
     draw(); loadCase('nsr');
     setInterval(()=>{if(DB[curKey].hr!=="---"){document.getElementById('val-hr').innerText=DB[curKey].hr+Math.floor(Math.random()*3)-1;}},2000);
 
-    // --- User Identity Prompt (NEW) ---
-    setTimeout(() => {
-        let userName = prompt("歡迎使用 ECG Pro 模擬系統\n\n請輸入您的職級姓名以進行登入：", "SN實習生");
-        if (!userName || userName.trim() === "") {
-            userName = "N-臨床護理人員";
-        }
-        document.getElementById('user-staff-badge').innerHTML = `醫護人員：<strong>${userName}</strong>`;
-    }, 100);
-
+    // --- Logic: Read User from LocalStorage ---
+    (function initUser() {
+        // 從 LocalStorage 讀取 'ecg_username'
+        const storedName = localStorage.getItem('ecg_username');
+        
+        // 如果有存到名字，就顯示名字，否則顯示「訪客」
+        const displayName = storedName && storedName.trim() !== "" ? storedName : "訪客";
+        
+        document.getElementById('user-staff-badge').innerHTML = `醫護人員：<strong>${displayName}</strong>`;
+    })();
 </script>
 </body>
 </html>
