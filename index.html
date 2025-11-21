@@ -663,6 +663,32 @@
             console.error("錯誤：找不到 id='user-staff-badge' 的顯示區域！請檢查 HTML。");
         }
     });
+// ==========================================
+    // 🛑 除錯區：請特別注意這裡 🛑
+    // ==========================================
+    window.addEventListener('load', () => {
+        console.log("System loaded. Checking identity...");
+        
+        // 1. 嘗試讀取
+        const storedName = localStorage.getItem('ecg_username');
+        console.log("LocalStorage Value:", storedName);
+
+        // 2. 嘗試抓取 HTML 元素
+        const badge = document.getElementById('user-staff-badge');
+        console.log("Badge Element:", badge);
+
+        if (badge) {
+            const displayName = (storedName && storedName.trim() !== "") ? storedName : "訪客";
+            
+            // 強制寫入，並加上紅色背景以供辨識
+            badge.innerHTML = `醫護人員：<strong style="background:red; color:white; padding:2px;">${displayName}</strong>`;
+            
+            // 彈出視窗確認 (如果你看到這個彈窗，代表程式有執行)
+            // alert(`系統偵測到名字：${displayName}`);
+        } else {
+            alert("嚴重錯誤：找不到 id='user-staff-badge' 的 HTML 元素！請檢查上面的 HTML 代碼。");
+        }
+    });
 </script>
 </body>
 </html>
