@@ -536,30 +536,45 @@
     // --- Interaction ---
     function loadCase(k) {
         curKey = k; resetDefib();
-        document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         event.currentTarget.classList.add('active');
-        
-        const d = DB[k];
+    
+    const d = DB[k];
         updateVitals(d);
-        document.getElementById('txt-title').innerText=d.t;
-        document.getElementById('txt-tag').innerText=d.b;
-        document.getElementById('txt-tag').style.background=d.c;
-        
-        fill('list-criteria',d.cri); fill('list-rx',d.rx); fill('list-nurse',d.n); fill('list-causes',d.cause);
-        document.getElementById('txt-patho').innerText=d.patho;
-        
-        const alert = document.getElementById('alert-box');
-        if(d.shock) { 
-    alert.style.display = 'block';
-    alert.style.backgroundColor = 'yellow';  // 設定背景為黃色
-    alert.style.color = 'black';             // 設定文字為黑色
-    alert.innerHTML = "⚡ <strong>【注意】視情形電擊！</strong> 在醫師或專科護理師監督下可執行電擊去顫！⚡"; 
-}
-        else if(k==='pea'||k==='asystole') { alert.style.display='block'; alert.innerHTML="⛔ <strong>【重要】請不要電擊！</strong>給予CPR即可！⛔"; }
-        else alert.style.display='none';
-        
-        updateAnatomy(d.vis);
+        document.getElementById('txt-title').innerText = d.t;
+        document.getElementById('txt-tag').innerText = d.b;
+        document.getElementById('txt-tag').style.background = d.c;
+
+        fill('list-criteria', d.cri); 
+        fill('list-rx', d.rx); 
+            fill('list-nurse', d.n); 
+        fill('list-causes', d.cause);
+        document.getElementById('txt-patho').innerText = d.patho;
+
+    // --- 警示框樣式修改區 ---
+    const alert = document.getElementById('alert-box');
+    
+    if (d.shock) {
+        // 情況：可電擊 -> 淡黃色背景、黑色字
+        alert.style.display = 'block';
+        alert.style.backgroundColor = '#FFF9C4'; // 淡黃色
+        alert.style.color = 'black';             // 黑色字
+        alert.innerHTML = "⚡ <strong>【注意】視情形電擊！</strong> 在醫師或專科護理師監督下可執行電擊去顫！⚡";
+    } 
+    else if (k === 'pea' || k === 'asystole') {
+        // 情況：不可電擊 -> 紅色背景、白色字 (比較顯眼且易讀)
+        alert.style.display = 'block';
+        alert.style.backgroundColor = '#FF5252'; // 亮紅色 (警示紅)
+        alert.style.color = 'white';             // 白色字
+        alert.innerHTML = "⛔ <strong>【重要】請不要電擊！</strong>給予CPR即可！⛔";
+    } 
+    else {
+        alert.style.display = 'none';
     }
+    // -----------------------
+
+    updateAnatomy(d.vis);
+}
 
     function updateVitals(d) {
         document.getElementById('val-hr').innerText=d.hr; document.getElementById('val-spo2').innerText=d.spo2;
