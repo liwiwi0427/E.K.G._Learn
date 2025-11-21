@@ -549,7 +549,12 @@
         document.getElementById('txt-patho').innerText=d.patho;
         
         const alert = document.getElementById('alert-box');
-        if(d.shock) { alert.style.display='block'; alert.innerHTML="⚡ <strong>【注意】視情形電擊！</strong> 在醫師或專師監督下可執行電擊去顫！⚡"; }
+        if(d.shock) { 
+    alert.style.display = 'block';
+    alert.style.backgroundColor = 'yellow';  // 設定背景為黃色
+    alert.style.color = 'black';             // 設定文字為黑色
+    alert.innerHTML = "⚡ <strong>【注意】視情形電擊！</strong> 在醫師或專科護理師監督下可執行電擊去顫！⚡"; 
+}
         else if(k==='pea'||k==='asystole') { alert.style.display='block'; alert.innerHTML="⛔ <strong>【重要】請不要電擊！</strong>給予CPR即可！⛔"; }
         else alert.style.display='none';
         
