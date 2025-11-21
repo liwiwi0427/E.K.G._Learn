@@ -284,11 +284,11 @@
         <!-- 1. Sinus -->
         <div class="nav-category">Sinus（竇性心律）</div>
         <div class="nav-btn active" onclick="loadCase('nsr')"><span>NSR（正常竇性心律）</span><div class="dot norm"></div></div>
-        <div class="nav-btn" onclick="loadCase('sb')"><span>Sinus Bradycardia （竇性緩脈）</span><div class="dot norm"></div></div>
+        <div class="nav-btn" onclick="loadCase('sb')"><span>Sinus Bradycardia（竇性緩脈）</span><div class="dot norm"></div></div>
 
         <!-- 2. Atrial -->
         <div class="nav-category">Atrial（房性心律）</div>
-        <div class="nav-btn" onclick="loadCase('psvt')"><span>PSVT （陣發性室上性心搏過速）</span><div class="dot warn"></div></div>
+        <div class="nav-btn" onclick="loadCase('psvt')"><span>PSVT（陣發性室上性心搏過速）</span><div class="dot warn"></div></div>
         <div class="nav-btn" onclick="loadCase('afib')"><span>AFib/AF（心房顫動）</span><div class="dot warn"></div></div>
         <div class="nav-btn" onclick="loadCase('afl')"><span>A-Flutter（心房撲動）</span><div class="dot warn"></div></div>
 
@@ -429,9 +429,9 @@
         </div>
         <div class="modal-body">
             <div class="log-section">
-                <div class="log-title">📋 Changelog</div>
+                <div class="log-title">📋 更新日誌</div>
                 <div class="log-entry">
-                    <div><span class="ver-tag">v10.5.01</span> <span class="date-tag">2025.11.20</span></div>
+                    <div><span class="ver-tag">v10.5</span> <span class="date-tag">2025.11.20</span></div>
                     <ul class="log-ul">
                         <li><strong>New Feature:</strong> 新增日/夜間模式切換功能 (Dark/Light Theme)。</li>
                         <li><strong>Content:</strong> 新增詳細病理機轉與常見成因頁籤。</li>
@@ -448,16 +448,16 @@
             </div>
             
             <div class="log-section">
-                <div class="log-title">👥 Credits</div>
+                <div class="log-title">👥創作者</div>
                 <p style="font-size:0.9rem; color:var(--text-main);">
-                    <strong>Concept & Design:</strong> User<br>
-                    <strong>Development Assist:</strong> Google AI Studio (Gemini 2.0)<br>
-                    <strong>Version:</strong> 10.5.01 Build 20251120
+                    <strong>概念與設計：</strong>哲瑋<br>
+                    <strong>開發小助手：</strong>Google AI Studio (Gemini 2.0)<br>
+                    <strong>目前版本：</strong>10.5 Build 202511
                 </p>
             </div>
 
             <div class="log-section" style="margin-bottom:0;">
-                <div class="log-title">📚 References & Data Sources</div>
+                <div class="log-title">📚參考資料與來源</div>
                 <a href="https://cpr.heart.org/" target="_blank" class="ref-link">AHA ACLS Guidelines 2020-2025</a>
                 <a href="https://litfl.com/ecg-library/" target="_blank" class="ref-link">Life in the Fast Lane (LITFL) - ECG Library</a>
                 <a href="https://www.ncbi.nlm.nih.gov/books/NBK470297/" target="_blank" class="ref-link">StatPearls - Torsades de Pointes</a>
@@ -469,22 +469,22 @@
 <script>
     // --- Data ---
     const DB = {
-        'nsr': { t:"NSR 正常竇性心律", b:"Normal", c:"#4caf50", shock:false, hr:72, sys:120, dia:80, spo2:98, rr:16, temp:37.0, cri:["Rate 60-100 bpm", "Rhythm 規則", "P波清楚，PR 0.12-0.20s"], patho:"電訊號由竇房結 (SA Node) 啟動，經房室結 (AV Node) 傳至心室，路徑完整。", cause:["健康心臟", "休息狀態"], rx:["無需治療"], n:["持續監測"], vis:'nsr' },
-        'sb': { t:"Sinus Bradycardia", b:"Brady", c:"#4caf50", shock:false, hr:45, sys:95, dia:60, spo2:96, rr:14, temp:36.8, cri:["Rate < 60 bpm", "P-QRS-T 波形正常"], patho:"竇房結發火頻率降低，但傳導路徑正常。", cause:["睡眠/運動員", "迷走神經亢進", "藥物 (Beta-blocker)"], rx:["觀察", "有症狀給 Atropine"], n:["監測血壓與意識"], vis:'nsr' },
-        'psvt': { t:"PSVT 室上頻脈", b:"Tachy", c:"#ff9800", shock:false, hr:188, sys:90, dia:60, spo2:94, rr:24, temp:37.2, cri:["Rate 150-250 bpm", "QRS 窄波", "P波隱藏"], patho:"房室結折返 (AVNRT)。存在雙徑路形成短路。", cause:["壓力/焦慮/咖啡因", "WPW 症候群"], rx:["Vagal Maneuver", "Adenosine 6mg IVP"], n:["接三通管+抬手", "備妥急救車"], vis:'psvt' },
-        'afib': { t:"Afib 心房顫動", b:"Irregular", c:"#ff9800", shock:false, hr:130, sys:110, dia:70, spo2:95, rr:20, temp:36.9, cri:["絕對不規則", "無 P 波 (f waves)"], patho:"心房多處微折返亂放電，失去收縮功能。", cause:["高血壓", "心衰竭", "老化"], rx:["心率控制", "Anticoagulation"], n:["監測脈搏", "評估中風"], vis:'afib' },
-        'afl': { t:"Atrial Flutter", b:"Tachy", c:"#ff9800", shock:false, hr:150, sys:110, dia:70, spo2:95, rr:18, temp:37.0, cri:["鋸齒狀撲動波", "F waves", "規則 (2:1)"], patho:"心房單一巨大折返迴路。", cause:["COPD", "心臟病"], rx:["心率控制", "消融術"], n:["監測"], vis:'psvt' },
-        'pvc': { t:"PVC 心室早收縮", b:"Ectopic", c:"#ff9800", shock:false, hr:"Irreg", sys:115, dia:75, spo2:97, rr:16, temp:37.0, cri:["寬大變形 QRS", "提早出現", "代償性暫停"], patho:"心室異位點提早放電。", cause:["低血鉀/鎂", "缺氧", "咖啡因"], rx:["觀察", "治療病因"], n:["監測頻率"], vis:'nsr' },
-        'vt_pulse': { t:"VT (Pulse) 有脈搏", b:"Emergency", c:"#f44336", shock:false, hr:170, sys:90, dia:50, spo2:92, rr:26, temp:37.0, cri:["寬大 QRS", "規則快速", "單型性"], patho:"心室折返或異位點主導。充血不足。", cause:["心肌梗塞", "電解質異常"], rx:["Amiodarone", "同步整流"], n:["摸脈搏！", "12導程"], vis:'vt' },
-        'vt_pulseless': { t:"VT (Pulseless)", b:"Arrest", c:"#f44336", shock:true, hr:180, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["寬大 QRS", "無脈搏"], patho:"同 VT 但心輸出量為零。", cause:["同 VT"], rx:["Defib 200J", "CPR"], n:["Code Blue"], vis:'vt' },
-        'vf': { t:"VF 心室顫動", b:"Arrest", c:"#f44336", shock:true, hr:"---", sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["波形混亂", "無 QRS", "無脈搏"], patho:"心室肌纖維混亂顫動，無機械收縮。", cause:["急性 MI", "R-on-T"], rx:["立即電擊", "CPR"], n:["Clear for Shock"], vis:'vf' },
-        'tdp': { t:"Torsades de Pointes", b:"Arrest", c:"#f44336", shock:true, hr:220, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["多型性 VT", "波形扭轉"], patho:"QT 延長導致 R-on-T 現象。", cause:["低血鎂", "藥物副作用"], rx:["Magnesium", "Defib"], n:["備鎂離子"], vis:'tdp' },
-        'avb1': { t:"1st Degree AVB", b:"Block", c:"#9c27b0", shock:false, hr:70, sys:118, dia:76, spo2:98, rr:16, temp:37.0, cri:["PR Interval > 0.20s", "Rhythm 規則"], patho:"房室結傳導延遲。", cause:["藥物", "迷走神經"], rx:["觀察"], n:["監測"], vis:'block-mild' },
-        'avb2t1': { t:"2nd Degree Type I", b:"Block", c:"#9c27b0", shock:false, hr:60, sys:110, dia:70, spo2:97, rr:16, temp:37.0, cri:["PR 漸長後漏跳 (Wenckebach)"], patho:"房室結疲勞現象。", cause:["下壁 MI", "中毒"], rx:["觀察"], n:["備藥"], vis:'block-mod' },
-        'avb2t2': { t:"2nd Degree Type II", b:"Danger", c:"#9c27b0", shock:false, hr:50, sys:100, dia:60, spo2:95, rr:18, temp:36.8, cri:["PR 固定", "突然漏跳 QRS"], patho:"希氏束下方病變。", cause:["前壁 MI"], rx:["TCP Standby", "PPM"], n:["貼 Pacing Pads"], vis:'block-mod' },
-        'avb3': { t:"3rd Degree AVB", b:"Critical", c:"#9c27b0", shock:false, hr:35, sys:80, dia:40, spo2:90, rr:12, temp:36.5, cri:["房室分離", "P與QRS互不相干"], patho:"房室傳導完全中斷。", cause:["MI", "纖維化"], rx:["TCP", "PPM"], n:["防跌倒", "TCP"], vis:'block-comp' },
-        'pea': { t:"PEA 無脈搏電活", b:"Arrest", c:"#f44336", shock:false, hr:70, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["ECG 有波形", "<strong>但無脈搏</strong>"], patho:"電氣正常但機械衰竭。", cause:["5H5T"], rx:["CPR", "Epi"], n:["摸脈搏"], vis:'pea' },
-        'asystole': { t:"Asystole 心律停止", b:"Arrest", c:"#f44336", shock:false, hr:0, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.0, cri:["一直線"], patho:"電氣活動停止。", cause:["缺氧末期"], rx:["CPR", "Epi", "不可電擊"], n:["確認導程", "壓胸"], vis:'asystole' }
+        'nsr': { t:"Norml Sinus Rhythm, NSR（正常竇性心律）", b:"Normal", c:"#4caf50", shock:false, hr:72, sys:120, dia:80, spo2:98, rr:16, temp:37.0, cri:["心跳速率：60-100 bpm", "節律規則", "P波清楚，PR 0.12-0.20s"], patho:"電訊號由竇房結（SA Node）開始，經房室結（AV Node）傳至心室，路徑完整。", cause:["健康心臟", "休息狀態"], rx:["無需特殊治療"], n:["續觀"], vis:'nsr' },
+        'sb': { t:"Sinus Bradycardia, Bardy（竇性緩脈）", b:"Brady", c:"#4caf50", shock:false, hr:45, sys:95, dia:60, spo2:96, rr:14, temp:36.8, cri:["Rate < 60 bpm", "P-QRS-T 波形正常"], patho:"竇房結發火頻率降低，但傳導路徑正常。", cause:["睡眠/運動員", "迷走神經亢進", "藥物 (Beta-blocker)"], rx:["觀察", "有症狀給 Atropine"], n:["監測血壓與意識"], vis:'nsr' },
+        'psvt': { t:"Paroxysmal Supraventricular Tachycardia, PSVT（陣發性室上性心搏過速）", b:"Tachy", c:"#ff9800", shock:false, hr:188, sys:90, dia:60, spo2:94, rr:24, temp:37.2, cri:["Rate 150-250 bpm", "QRS 窄波", "P波隱藏"], patho:"房室結折返 (AVNRT)。存在雙徑路形成短路。", cause:["壓力/焦慮/咖啡因", "WPW 症候群"], rx:["Vagal Maneuver", "Adenosine 6mg IVP"], n:["接三通管+抬手", "備妥急救車"], vis:'psvt' },
+        'afib': { t:"Atrial Fibrillation, AFib/AF（心房顫動）", b:"Irregular", c:"#ff9800", shock:false, hr:130, sys:110, dia:70, spo2:95, rr:20, temp:36.9, cri:["絕對不規則", "無 P 波 (f waves)"], patho:"心房多處微折返亂放電，失去收縮功能。", cause:["高血壓", "心衰竭", "老化"], rx:["心率控制", "Anticoagulation"], n:["監測脈搏", "評估中風"], vis:'afib' },
+        'afl': { t:"A-Flutter（心房撲動）", b:"Tachy", c:"#ff9800", shock:false, hr:150, sys:110, dia:70, spo2:95, rr:18, temp:37.0, cri:["鋸齒狀撲動波", "F waves", "規則 (2:1)"], patho:"心房單一巨大折返迴路。", cause:["COPD", "心臟病"], rx:["心率控制", "消融術"], n:["監測"], vis:'psvt' },
+        'pvc': { t:"Premature Ventricular Contraction, PVC（心室早期收縮）", b:"Ectopic", c:"#ff9800", shock:false, hr:"Irreg", sys:115, dia:75, spo2:97, rr:16, temp:37.0, cri:["寬大變形 QRS", "提早出現", "代償性暫停"], patho:"心室異位點提早放電。", cause:["低血鉀/鎂", "缺氧", "咖啡因"], rx:["觀察", "治療病因"], n:["監測頻率"], vis:'nsr' },
+        'vt_pulse': { t:"Ventricular Tachycardia, VT/with Pulse（心室頻脈）", b:"Emergency", c:"#f44336", shock:false, hr:170, sys:90, dia:50, spo2:92, rr:26, temp:37.0, cri:["寬大 QRS", "規則快速", "單型性"], patho:"心室折返或異位點主導。充血不足。", cause:["心肌梗塞", "電解質異常"], rx:["Amiodarone", "同步整流"], n:["摸脈搏！", "12導程"], vis:'vt' },
+        'vt_pulseless': { t:"Ventricular Tachycardia, pVT/withour Pulse（無脈性心室頻脈）", b:"Arrest", c:"#f44336", shock:true, hr:180, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["寬大 QRS", "無脈搏"], patho:"同 VT 但心輸出量為零。", cause:["同 VT"], rx:["Defib 200J", "CPR"], n:["Code Blue"], vis:'vt' },
+        'vf': { t:"Ventricular Fibrillation, VF（心室顫動）", b:"Arrest", c:"#f44336", shock:true, hr:"---", sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["波形混亂", "無 QRS", "無脈搏"], patho:"心室肌纖維混亂顫動，無機械收縮。", cause:["急性 MI", "R-on-T"], rx:["立即電擊", "CPR"], n:["Clear for Shock"], vis:'vf' },
+        'tdp': { t:"Torsades de Pointes, TdP（跳著芭蕾舞的心律不整）", b:"Arrest", c:"#f44336", shock:true, hr:220, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["多型性 VT", "波形扭轉"], patho:"QT 延長導致 R-on-T 現象。", cause:["低血鎂", "藥物副作用"], rx:["Magnesium", "Defib"], n:["備鎂離子"], vis:'tdp' },
+        'avb1': { t:"1st Degree AV-Block, 1° AVB（第一度房室傳導阻滯）", b:"Block", c:"#9c27b0", shock:false, hr:70, sys:118, dia:76, spo2:98, rr:16, temp:37.0, cri:["PR Interval > 0.20s", "Rhythm 規則"], patho:"房室結傳導延遲。", cause:["藥物", "迷走神經"], rx:["觀察"], n:["監測"], vis:'block-mild' },
+        'avb2t1': { t:"2nd Degree AV-Block Type I, 2°-1 AVB（第二度房室傳導阻滯，第一型）", b:"Block", c:"#9c27b0", shock:false, hr:60, sys:110, dia:70, spo2:97, rr:16, temp:37.0, cri:["PR 漸長後漏跳 (Wenckebach)"], patho:"房室結疲勞現象。", cause:["下壁 MI", "中毒"], rx:["觀察"], n:["備藥"], vis:'block-mod' },
+        'avb2t2': { t:"2nd Degree Type II, 2°-2 AV（第二度房室傳導阻滯，第二型）B", b:"Danger", c:"#9c27b0", shock:false, hr:50, sys:100, dia:60, spo2:95, rr:18, temp:36.8, cri:["PR 固定", "突然漏跳 QRS"], patho:"希氏束下方病變。", cause:["前壁 MI"], rx:["TCP Standby", "PPM"], n:["貼 Pacing Pads"], vis:'block-mod' },
+        'avb3': { t:"3rd Degree AVB, 3° AVB（第三度房室傳導阻滯）", b:"Critical", c:"#9c27b0", shock:false, hr:35, sys:80, dia:40, spo2:90, rr:12, temp:36.5, cri:["房室分離", "P與QRS互不相干"], patho:"房室傳導完全中斷。", cause:["MI", "纖維化"], rx:["TCP", "PPM"], n:["防跌倒", "TCP"], vis:'block-comp' },
+        'pea': { t:"Pulseless Electrical Activity, PEA（無脈性電活動）", b:"Arrest", c:"#f44336", shock:false, hr:70, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.5, cri:["ECG 有波形", "<strong>但無脈搏</strong>"], patho:"電氣正常但機械衰竭。", cause:["5H5T"], rx:["CPR", "Epi"], n:["摸脈搏"], vis:'pea' },
+        'asystole': { t:"Asystole（心律停止）", b:"Arrest", c:"#f44336", shock:false, hr:0, sys:"---", dia:"---", spo2:"?", rr:0, temp:36.0, cri:["一直線"], patho:"電氣活動停止。", cause:["缺氧末期"], rx:["CPR", "Epi", "不可電擊"], n:["確認導程", "壓胸"], vis:'asystole' }
     };
 
     // --- Variables ---
