@@ -109,6 +109,7 @@
             background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px);
             background-size: 20px 20px;
         }
+        /* 修改處：Monitor Overlay */
         .monitor-overlay {
             position: absolute; top: 10px; left: 15px; color: var(--c-hr); font-weight: bold; z-index: 5;
             text-shadow: 0 0 5px rgba(0,230,118,0.3); font-family: monospace;
@@ -330,10 +331,14 @@
         <div class="monitor-screen">
             <div class="ecg-grid"></div>
             <div class="flash-overlay" id="screen-flash"></div>
+            
+            <!-- Modified Overlay with Staff Name -->
             <div class="monitor-overlay">
-            <div>LEAD II <span style="font-size:0.8em; opacity:0.7; margin-left:10px;">Stat Monitoring</span></div>
-            <div id="staff-display" style="font-size:0.85rem; color:var(--c-spo2); margin-top:4px; letter-spacing:1px; font-weight:normal;"></div>
-        </div>
+                <div>LEAD II <span style="font-size:0.8em; opacity:0.7; margin-left:10px;">Stat Monitoring</span></div>
+                <!-- 這裡會顯示醫護人員名字 -->
+                <div id="user-staff-badge" style="font-size:0.85rem; color:var(--c-spo2); margin-top:4px; letter-spacing:1px; font-weight:normal; opacity:0.9;"></div>
+            </div>
+
             <div class="med-log" id="med-log"></div>
             <canvas id="ecgCanvas"></canvas>
         </div>
@@ -554,31 +559,26 @@
     fill('list-causes', d.cause);
     document.getElementById('txt-patho').innerText = d.patho;
 
-    // --- 警示框樣式 (含邊框加粗設定) ---
+    // Alert Logic
     const alert = document.getElementById('alert-box');
-
     if (d.shock) {
-        // ⚡ 可電擊設定 ⚡
         alert.style.display = 'block';
-        alert.style.backgroundColor = '#FFF9C4'; // 背景：淡黃色
-        alert.style.color = 'black';             // 文字：黑色
-        alert.style.border = '5px solid #FF9800';// 邊框：5px 粗框 + 亮橘色 (對應黃色系)
+        alert.style.backgroundColor = '#FFF9C4'; 
+        alert.style.color = 'black';
+        alert.style.border = '5px solid #FF9800';
         alert.innerHTML = "⚡ <strong>【注意】視情形電擊！</strong> 在醫師或專科護理師監督下可執行電擊去顫！⚡";
     } 
     else if (k === 'pea' || k === 'asystole') {
-        // ⛔ 不可電擊設定 ⛔
         alert.style.display = 'block';
-        alert.style.backgroundColor = '#FF5252'; // 背景：紅色
-        alert.style.color = 'white';             // 文字：白色
-        alert.style.border = '5px solid #D32F2F';// 邊框：5px 粗框 + 深紅色 (加強警告感)
+        alert.style.backgroundColor = '#FF5252'; 
+        alert.style.color = 'white';
+        alert.style.border = '5px solid #D32F2F';
         alert.innerHTML = "⛔ <strong>【重要】請不要電擊！</strong>給予CPR即可！⛔";
     } 
     else {
         alert.style.display = 'none';
-        alert.style.border = 'none'; // 隱藏時清除邊框，避免殘留
+        alert.style.border = 'none';
     }
-    // ----------------------------------
-
     updateAnatomy(d.vis);
 }
     function updateVitals(d) {
@@ -627,22 +627,15 @@
     draw(); loadCase('nsr');
     setInterval(()=>{if(DB[curKey].hr!=="---"){document.getElementById('val-hr').innerText=DB[curKey].hr+Math.floor(Math.random()*3)-1;}},2000);
 
-    // --- User Identity System ---
-    (function askIdentity() {
-        // 1. 彈出視窗詢問名字，預設值為 "實習生"
-        let name = prompt("正在啟動 ECG Pro 模擬系統...\n\n請輸入您的姓名或代號：", "實習生");
-        
-        // 2. 如果使用者按取消或沒輸入，給一個預設名稱
-        if (name === null || name.trim() === "") {
-            name = "訪客人員";
+    // --- User Identity Prompt (NEW) ---
+    setTimeout(() => {
+        let userName = prompt("歡迎使用 ECG Pro 模擬系統\n\n請輸入您的職級姓名以進行登入：", "SN實習生");
+        if (!userName || userName.trim() === "") {
+            userName = "N-臨床護理人員";
         }
+        document.getElementById('user-staff-badge').innerHTML = `醫護人員：<strong>${userName}</strong>`;
+    }, 100);
 
-        // 3. 顯示在畫面上
-        const display = document.getElementById('staff-display');
-        if (display) {
-            display.innerHTML = `醫護人員：<strong>${name}</strong>`;
-        }
-    })();
 </script>
 </body>
 </html>
