@@ -276,49 +276,49 @@
 
 <aside>
     <div class="brand">
-        <span>⚡ ECG PRO</span>
-        <span class="ver-badge">V10.5.01</span>
+        <span>⚡一個看起來很酷的心電圖學習網站</span>
+        <span class="ver-badge">V10.5</span>
     </div>
 
     <div class="nav-scroll">
         <!-- 1. Sinus -->
-        <div class="nav-category">Sinus (竇性心律)</div>
-        <div class="nav-btn active" onclick="loadCase('nsr')"><span>NSR 正常竇性</span><div class="dot norm"></div></div>
-        <div class="nav-btn" onclick="loadCase('sb')"><span>Sinus Brady 緩脈</span><div class="dot norm"></div></div>
+        <div class="nav-category">Sinus（竇性心律）</div>
+        <div class="nav-btn active" onclick="loadCase('nsr')"><span>NSR（正常竇性心律）</span><div class="dot norm"></div></div>
+        <div class="nav-btn" onclick="loadCase('sb')"><span>Sinus Bradycardia （竇性緩脈）</span><div class="dot norm"></div></div>
 
         <!-- 2. Atrial -->
-        <div class="nav-category">Atrial (房性心律)</div>
-        <div class="nav-btn" onclick="loadCase('psvt')"><span>PSVT 室上頻脈</span><div class="dot warn"></div></div>
-        <div class="nav-btn" onclick="loadCase('afib')"><span>Afib 心房顫動</span><div class="dot warn"></div></div>
-        <div class="nav-btn" onclick="loadCase('afl')"><span>A-Flutter 心房撲動</span><div class="dot warn"></div></div>
+        <div class="nav-category">Atrial（房性心律）</div>
+        <div class="nav-btn" onclick="loadCase('psvt')"><span>PSVT （陣發性室上性心搏過速）</span><div class="dot warn"></div></div>
+        <div class="nav-btn" onclick="loadCase('afib')"><span>AFib/AF（心房顫動）</span><div class="dot warn"></div></div>
+        <div class="nav-btn" onclick="loadCase('afl')"><span>A-Flutter（心房撲動）</span><div class="dot warn"></div></div>
 
         <!-- 3. Ventricular -->
-        <div class="nav-category">Ventricular (室性心律)</div>
-        <div class="nav-btn" onclick="loadCase('pvc')"><span>PVC 心室早收縮</span><div class="dot warn"></div></div>
-        <div class="nav-btn" onclick="loadCase('vt_pulse')"><span>VT (Pulse) 有脈搏</span><div class="dot crit"></div></div>
-        <div class="nav-btn" onclick="loadCase('vt_pulseless')"><span>VT (No Pulse) 無脈搏</span><div class="dot crit"></div></div>
-        <div class="nav-btn" onclick="loadCase('tdp')"><span>Torsades (TdP)</span><div class="dot crit"></div></div>
-        <div class="nav-btn" onclick="loadCase('vf')"><span>VF 心室顫動</span><div class="dot crit"></div></div>
+        <div class="nav-category">Ventricular（室性心律）</div>
+        <div class="nav-btn" onclick="loadCase('pvc')"><span>PVC（心室早期收縮）</span><div class="dot warn"></div></div>
+        <div class="nav-btn" onclick="loadCase('vt_pulse')"><span>VT/with Pulse（心室頻脈）</span><div class="dot crit"></div></div>
+        <div class="nav-btn" onclick="loadCase('vt_pulseless')"><span>pVT/withour Pulse（無脈性心室頻脈）</span><div class="dot crit"></div></div>
+        <div class="nav-btn" onclick="loadCase('tdp')"><span>Torsade de pointes/TdP（跳著芭蕾舞的心律不整）</span><div class="dot crit"></div></div>
+        <div class="nav-btn" onclick="loadCase('vf')"><span>VF（心室顫動）</span><div class="dot crit"></div></div>
 
         <!-- 4. Blocks -->
-        <div class="nav-category">AV Blocks (傳導阻滯)</div>
-        <div class="nav-btn" onclick="loadCase('avb1')"><span>1st Degree AVB</span><div class="dot spec"></div></div>
-        <div class="nav-btn" onclick="loadCase('avb2t1')"><span>2nd Degree Type I</span><div class="dot spec"></div></div>
-        <div class="nav-btn" onclick="loadCase('avb2t2')"><span>2nd Degree Type II</span><div class="dot spec"></div></div>
-        <div class="nav-btn" onclick="loadCase('avb3')"><span>3rd Degree (Complete)</span><div class="dot spec"></div></div>
+        <div class="nav-category">AV Blocks（傳導阻滯）</div>
+        <div class="nav-btn" onclick="loadCase('avb1')"><span>1st Degree AVB（第一度房室傳導阻滯）</span><div class="dot spec"></div></div>
+        <div class="nav-btn" onclick="loadCase('avb2t1')"><span>2nd Degree　AVB Type I（第二度房室傳導阻滯，第一型）</span><div class="dot spec"></div></div>
+        <div class="nav-btn" onclick="loadCase('avb2t2')"><span>2nd Degree　AVB Type II（第二度房室傳導阻滯，第二型）</span><div class="dot spec"></div></div>
+        <div class="nav-btn" onclick="loadCase('avb3')"><span>3rd Degree　AVB (Complete)（第三度房室傳導阻滯）</span><div class="dot spec"></div></div>
 
         <!-- 5. Arrest -->
         <div class="nav-category">Arrest (急救)</div>
-        <div class="nav-btn" onclick="loadCase('pea')"><span>PEA 無脈搏電活</span><div class="dot crit"></div></div>
-        <div class="nav-btn" onclick="loadCase('asystole')"><span>Asystole 心律停止</span><div class="dot crit"></div></div>
+        <div class="nav-btn" onclick="loadCase('pea')"><span>PEA（無脈性電活動）</span><div class="dot crit"></div></div>
+        <div class="nav-btn" onclick="loadCase('asystole')"><span>Asystole（心律停止）</span><div class="dot crit"></div></div>
     </div>
 
     <div class="sidebar-footer">
         <div class="footer-btn" onclick="toggleTheme()" title="Toggle Theme">
-            🌗<span>Theme</span>
+            🌗<span>主題變更</span>
         </div>
         <div class="footer-btn" onclick="openModal()" title="About / Changelog">
-            ℹ️<span>Info</span>
+            ℹ️<span>關於這個酷東西</span>
         </div>
     </div>
 </aside>
@@ -330,7 +330,7 @@
         <div class="monitor-screen">
             <div class="ecg-grid"></div>
             <div class="flash-overlay" id="screen-flash"></div>
-            <div class="monitor-overlay">LEAD II <span style="font-size:0.8em; opacity:0.7; margin-left:10px;">MONITOR</span></div>
+            <div class="monitor-overlay">LEAD II <span style="font-size:0.8em; opacity:0.7; margin-left:10px;">Stat Monitoring</span></div>
             <div class="med-log" id="med-log"></div>
             <canvas id="ecgCanvas"></canvas>
         </div>
@@ -395,9 +395,9 @@
                 <span class="rhythm-tag" id="txt-tag" style="background:#4caf50;">Normal</span>
             </div>
             <div class="tabs">
-                <button class="tab-btn active" onclick="setTab('overview')">Overview</button>
-                <button class="tab-btn" onclick="setTab('patho')">Pathology</button>
-                <button class="tab-btn" onclick="setTab('rx')">Treatment</button>
+                <button class="tab-btn active" onclick="setTab('overview')">大綱</button>
+                <button class="tab-btn" onclick="setTab('patho')">病理</button>
+                <button class="tab-btn" onclick="setTab('rx')">治療</button>
             </div>
             <div id="tab-overview" class="tab-content active">
                 <h3>📊 E.K.G. Criteria（心電圖特徵）</h3>
